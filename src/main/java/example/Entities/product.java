@@ -6,12 +6,13 @@ import jakarta.persistence.*;
 public class product {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     private String name;
     private double price;
     private String description;
     private String image;
     private String category;
+    private int quantity;
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private customer customer;
@@ -19,21 +20,30 @@ public class product {
     public product() {
     }
 
-    public product(int id, String name, double price, String description, String image, String category, example.Entities.customer customer) {
+    public product(long id, String name, double price, String description, String image, String category, int quantity, example.Entities.customer customer) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
         this.image = image;
         this.category = category;
+        this.quantity = quantity;
         this.customer = customer;
     }
 
-    public int getId() {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

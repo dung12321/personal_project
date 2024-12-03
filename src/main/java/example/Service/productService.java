@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 public interface productService {
 
     product getProduct(int id);
@@ -19,4 +19,6 @@ public interface productService {
     void deleteProduct(int id);
 
     void deleteAllProducts();
+
+    product findById(int id);
 }
