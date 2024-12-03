@@ -7,33 +7,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/main.css">
-
-
 </head>
 <body>
 <div class="container">
-    <form th:action="@{/Login}" method="post" th:object="${account}">
+    <form th:action="@{/Login}" method="post" th:object="${user}">
         <h2>Member Login</h2>
+        <div th:if="${message}" class="alert alert-danger">
+            <p th:text="${message}"></p>
+        </div>
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input id="username" type="text" th:field="*{userName}" class="form-control" name="username" maxlength="50" placeholder="Enter Username" required>
+            <input id="username" type="text" th:field="*{account}" class="form-control" name="username" maxlength="50" placeholder="Enter Username" required>
         </div>
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input th:field="*{passWord}" type="password" maxlength="50" class="form-control" name="password" placeholder="Password" required>
+            <input th:field="*{password}" type="password" maxlength="50" class="form-control" name="password" placeholder="Password" required>
         </div>
-        <div th:if="${error}" style="color:red;">
-            <p th:text="${error}"></p>
-        </div>
+
         <div class="input-button">
-            <input type="submit" value="Đăng Nhập">
+            <input type="submit" value="Đăng Nhập" class="btn btn-primary">
         </div>
     </form>
-
     <div class="href-password">
-        <a th:href="@{/forgot-password}">Quên Mật Khẩu?</a>
+        <a href="#">Quên Mật Khẩu?</a>
     </div>
 </div>
-
 </body>
 </html>

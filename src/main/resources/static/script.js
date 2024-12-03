@@ -25,3 +25,25 @@ prev.addEventListener('click', function (event) {
     comments.style.transform = `translate(${translateY}px)`;
     count++;
 })
+$(document).ready(function() {
+    $.ajax({
+        url: '/api/products',
+        method: 'GET',
+        success: function(data) {
+            data.forEach(product => {
+                $('#list-products').append(`
+          <div class="item">
+            <img src="${product.image}" alt="${product.name}" />
+            <div class="stars">
+              <span><img src="images/star.png" alt="star"></span>
+             
+            </div>
+            <div class="name">${product.name}</div>
+            <div class="desc">${product.description}</div>
+            <div class="price">${product.price} VND</div>
+          </div>
+        `);
+            });
+        }
+    });
+});

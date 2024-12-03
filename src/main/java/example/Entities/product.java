@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 public class product {
     @Id
     @GeneratedValue
+    @Column(name = "product_id")
     private long id;
     private String name;
     private double price;
@@ -13,22 +14,33 @@ public class product {
     private String image;
     private String category;
     private int quantity;
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private customer customer;
+//    @ManyToOne
+//    @JoinColumn(name = "customer_id")
+//    private customer customer;
+    @OneToOne(mappedBy = "product")
+    private receiptItem receiptItem;
 
     public product() {
     }
 
-    public product(long id, String name, double price, String description, String image, String category, int quantity, example.Entities.customer customer) {
-        this.id = id;
+    public product(String name, long id, double price, String description, String image, String category, int quantity, example.Entities.receiptItem receiptItem) {
         this.name = name;
+        this.id = id;
         this.price = price;
         this.description = description;
         this.image = image;
         this.category = category;
         this.quantity = quantity;
-        this.customer = customer;
+//        this.customer = customer;
+        this.receiptItem = receiptItem;
+    }
+
+    public example.Entities.receiptItem getReceiptItem() {
+        return receiptItem;
+    }
+
+    public void setReceiptItem(example.Entities.receiptItem receiptItem) {
+        this.receiptItem = receiptItem;
     }
 
     public int getQuantity() {
@@ -87,11 +99,11 @@ public class product {
         this.category = category;
     }
 
-    public example.Entities.customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(example.Entities.customer customer) {
-        this.customer = customer;
-    }
+//    public example.Entities.customer getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(example.Entities.customer customer) {
+//        this.customer = customer;
+//    }
 }
